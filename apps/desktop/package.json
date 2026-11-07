@@ -1,6 +1,8 @@
 {
   "name": "@leolisen/desktop",
   "version": "0.1.0",
+  "description": "Leolisen YouTube Music Desktop Player",
+  "author": "Leo Blooz <bloozbits@gmail.com>",
   "private": true,
   "main": "electron/main.cjs",
   "type": "module",
@@ -29,7 +31,7 @@
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
-    "electron": "^34.2.0",
+    "electron": "34.2.0",
     "electron-builder": "^25.1.8",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",

@@ -23,6 +23,7 @@
     "desktop:pack:all": "npm run build && npm run electron:build:all --workspace=@leolisen/desktop"
   },
   "devDependencies": {
+    "electron": "34.2.0",
     "typescript": "^5.7.3"
   }
 }

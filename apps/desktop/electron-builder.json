@@ -2,6 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "com.leolisen.app",
   "productName": "Leolisen",
+  "electronVersion": "34.2.0",
   "directories": {
     "output": "release"
   },
