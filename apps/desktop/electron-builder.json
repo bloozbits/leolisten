@@ -5,6 +5,11 @@
   "electronVersion": "34.2.0",
   "npmRebuild": false,
   "nodeGypRebuild": false,
+  "publish": {
+    "provider": "github",
+    "owner": "bloozbits",
+    "repo": "leolisten"
+  },
   "directories": {
     "output": "release"
   },

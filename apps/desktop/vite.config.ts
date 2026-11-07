@@ -48,6 +48,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@leolisen/core': fileURLToPath(new URL('../../packages/core/src/index.ts', import.meta.url)),
     },
   },
   server: {

@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Leolisen YouTube Music Desktop Player",
   "author": "Leo Blooz <bloozbits@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bloozbits/leolisten.git"
+  },
   "private": true,
   "main": "electron/main.cjs",
   "type": "module",
@@ -11,10 +15,10 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "electron:build:win": "electron-builder --win --config electron-builder.json",
-    "electron:build:mac": "electron-builder --mac --config electron-builder.json",
-    "electron:build:linux": "electron-builder --linux --config electron-builder.json",
-    "electron:build:all": "electron-builder -wml --config electron-builder.json",
+    "electron:build:win": "electron-builder --win --config electron-builder.json --publish never",
+    "electron:build:mac": "electron-builder --mac --config electron-builder.json --publish never",
+    "electron:build:linux": "electron-builder --linux --config electron-builder.json --publish never",
+    "electron:build:all": "electron-builder -wml --config electron-builder.json --publish never",
     "pack": "npm run build && electron-builder --config electron-builder.json"
   },
   "dependencies": {
