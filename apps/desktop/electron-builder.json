@@ -3,6 +3,8 @@
   "appId": "com.leolisen.app",
   "productName": "Leolisen",
   "electronVersion": "34.2.0",
+  "npmRebuild": false,
+  "nodeGypRebuild": false,
   "directories": {
     "output": "release"
   },

@@ -44,7 +44,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --include=optional
 
       - name: Build Core Architecture
         run: npm run build:core
