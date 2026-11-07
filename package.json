@@ -1,0 +1,28 @@
+{
+  "name": "leolisen-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@leolisen/desktop",
+    "build": "npm run build --workspace=@leolisen/core && npm run build --workspace=@leolisen/desktop",
+    "build:core": "npm run build --workspace=@leolisen/core",
+    "build:desktop": "npm run build --workspace=@leolisen/desktop",
+    "typecheck": "npm run typecheck --workspace=@leolisen/core && npm run typecheck --workspace=@leolisen/desktop",
+    "typecheck:core": "npm run typecheck --workspace=@leolisen/core",
+    "typecheck:desktop": "npm run typecheck --workspace=@leolisen/desktop",
+    "desktop:dev": "npm run dev --workspace=@leolisen/desktop",
+    "desktop:build": "npm run build --workspace=@leolisen/desktop",
+    "desktop:typecheck": "npm run typecheck --workspace=@leolisen/desktop",
+    "desktop:pack:win": "npm run build && npm run electron:build:win --workspace=@leolisen/desktop",
+    "desktop:pack:mac": "npm run build && npm run electron:build:mac --workspace=@leolisen/desktop",
+    "desktop:pack:linux": "npm run build && npm run electron:build:linux --workspace=@leolisen/desktop",
+    "desktop:pack:all": "npm run build && npm run electron:build:all --workspace=@leolisen/desktop"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

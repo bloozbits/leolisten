@@ -1,0 +1,46 @@
+{
+  "name": "@leolisen/core",
+  "version": "0.1.0",
+  "description": "Headless, cross-platform, local-first core architecture for Leolisen YouTube Music client",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "node test/verify.js",
+    "download": "node test/download-cli.js",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "music",
+    "player",
+    "youtube-music",
+    "innertube",
+    "audio",
+    "headless",
+    "local-first",
+    "cross-platform",
+    "react-native",
+    "tauri",
+    "electron"
+  ],
+  "author": "Leolisen Contributors",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

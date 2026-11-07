@@ -1,0 +1,92 @@
+name: Build Desktop Releases
+
+on:
+  push:
+    branches: [main, master]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }} (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+            artifact_name: leolisen-windows
+            build_script: npm --workspace=@leolisen/desktop run electron:build:win
+          - os: macos-latest
+            platform: macos
+            artifact_name: leolisen-macos
+            build_script: npm --workspace=@leolisen/desktop run electron:build:mac
+          - os: ubuntu-latest
+            platform: linux
+            artifact_name: leolisen-linux
+            build_script: npm --workspace=@leolisen/desktop run electron:build:linux
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Typecheck Core & Desktop
+        run: |
+          npm run typecheck:core
+          npm run typecheck:desktop
+
+      - name: Build Web Application
+        run: |
+          npm run build:core
+          npm run build:desktop
+
+      - name: Package Desktop Binary (${{ matrix.platform }})
+        run: ${{ matrix.build_script }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload ${{ matrix.platform }} Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: |
+            apps/desktop/release/*.exe
+            apps/desktop/release/*.dmg
+            apps/desktop/release/*.zip
+            apps/desktop/release/*.AppImage
+            apps/desktop/release/*.deb
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish to GitHub Release (on tags)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            apps/desktop/release/*.exe
+            apps/desktop/release/*.dmg
+            apps/desktop/release/*.zip
+            apps/desktop/release/*.AppImage
+            apps/desktop/release/*.deb
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
