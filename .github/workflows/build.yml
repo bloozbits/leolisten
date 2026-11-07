@@ -37,24 +37,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
         run: npm install
+
+      - name: Build Core Architecture
+        run: npm run build:core
 
       - name: Typecheck Core & Desktop
         run: |
           npm run typecheck:core
           npm run typecheck:desktop
 
-      - name: Build Web Application
-        run: |
-          npm run build:core
-          npm run build:desktop
+      - name: Build Desktop Web Assets
+        run: npm run build:desktop
 
       - name: Package Desktop Binary (${{ matrix.platform }})
         run: ${{ matrix.build_script }}
@@ -90,3 +91,4 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

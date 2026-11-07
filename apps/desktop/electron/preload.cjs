@@ -7,3 +7,4 @@ contextBridge.exposeInMainWorld('electron', {
   isMaximized: () => ipcRenderer.invoke('window-is-maximized'),
   platform: process.platform,
 });
+

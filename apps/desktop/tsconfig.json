@@ -17,7 +17,8 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@leolisen/core": ["../../packages/core/src/index.ts"]
     }
   },
   "include": ["src", "vite.config.ts"]
